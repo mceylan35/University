@@ -34,18 +34,21 @@ public class HibernateStudentDal implements IStudentDal{
 	@Override
 	public void add(Student student) {
 		// TODO Auto-generated method stub
+		Session session=entityManager.unwrap(Session.class);
+		
+		session.saveOrUpdate(student);
 		
 	}
 
-	@Override
-	public void update(Student student) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
-	public void delete(int id) {
+	public Student detay(int id) {
 		// TODO Auto-generated method stub
+		Session session=entityManager.unwrap(Session.class);
+		Student student=session.get(Student.class, id);
+		return student;
+		
 		
 	}
 
