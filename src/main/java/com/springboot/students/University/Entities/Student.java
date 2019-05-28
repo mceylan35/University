@@ -29,6 +29,11 @@ public class Student {
 		this.create_at = create_at;
 		this.updated_at = updated_at;
 	}
+	
+	public Student() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
