@@ -16,17 +16,17 @@ public class Student {
 	private String name;
 	@Column(name="started_at")
 	private Date started_at;
-	@Column(name="create_at")
-	private Date create_at;
+	@Column(name="created_at")
+	private Date created_at;
 	@Column(name="updated_at")
 	private Date updated_at;
-	public Student(int id, int university_id, String name, Date started_at, Date create_at, Date updated_at) {
+	public Student(int id, int university_id, String name, Date started_at, Date created_at, Date updated_at) {
 		super();
 		this.id = id;
 		this.university_id = university_id;
 		this.name = name;
 		this.started_at = started_at;
-		this.create_at = create_at;
+		this.created_at = created_at;
 		this.updated_at = updated_at;
 	}
 	
@@ -58,11 +58,11 @@ public class Student {
 	public void setStarted_at(Date started_at) {
 		this.started_at = started_at;
 	}
-	public Date getCreate_at() {
-		return create_at;
+	public Date getCreated_at() {
+		return created_at;
 	}
-	public void setCreate_at(Date create_at) {
-		this.create_at = create_at;
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
 	}
 	public Date getUpdated_at() {
 		return updated_at;

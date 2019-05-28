@@ -30,22 +30,17 @@ public class StudentManager implements IStudentService {
 	@Override
 	@Transactional
 	public void add(Student student) {
-		// TODO Auto-generated method stub
 		
+		this.studentDal.add(student);
 	}
+
+	
 
 	@Override
 	@Transactional
-	public void update(Student student) {
-		// TODO Auto-generated method stub
+	public Student detay(int id) {
 		
-	}
-
-	@Override
-	@Transactional
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		return this.studentDal.detay(id);
 	}
 
 }
