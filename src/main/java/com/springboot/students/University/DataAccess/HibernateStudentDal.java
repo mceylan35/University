@@ -27,7 +27,7 @@ public class HibernateStudentDal implements IStudentDal{
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
 	
-		List<Student> students = ((EntityManager) session).createQuery("from Student",Student.class).getResultList();
+		List<Student> students = session.createQuery("from Student",Student.class).getResultList();
 		return students;
 	}
 
