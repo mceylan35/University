@@ -46,6 +46,12 @@ public class University {
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 	}
+	
+	public University() {
+		
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
