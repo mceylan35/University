@@ -20,6 +20,9 @@ public class Student {
 	private Date created_at;
 	@Column(name="updated_at")
 	private Date updated_at;
+	
+	
+	
 	public Student(int id, int university_id, String name, Date started_at, Date created_at, Date updated_at) {
 		super();
 		this.id = id;
@@ -70,5 +73,6 @@ public class Student {
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
+	//public virtual universities universities { get; set; } bir tane üniversitesi olacak
 	
 }
