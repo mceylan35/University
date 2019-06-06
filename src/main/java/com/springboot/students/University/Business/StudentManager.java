@@ -3,12 +3,17 @@ package com.springboot.students.University.Business;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.springboot.students.University.DataAccess.IStudentDal;
+import com.springboot.students.University.DataAccess.IUniversityDal;
 import com.springboot.students.University.Entities.Student;
+import com.springboot.students.University.Entities.University;
 import com.springboot.students.University.Entities.UniversityModel;
 
 import org.apache.http.HttpResponse;
@@ -23,11 +28,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudentManager implements IStudentService {
 
 	private IStudentDal studentDal;
-	
+	private IUniversityDal universityDal;
 	@Autowired
-	public StudentManager(IStudentDal studentDal) {
+	public StudentManager(IStudentDal studentDal,IUniversityDal universityDal) {
 		
 		this.studentDal = studentDal;
+		this.universityDal=universityDal;
 	}
 
 	@Override
@@ -40,33 +46,69 @@ public class StudentManager implements IStudentService {
 	@Override
 	@Transactional
 	public void add(Student student) {
+		//öğrenci ekleme isteği gelir.
+		//gelen  university değeri sizin universities tablonuzdak api_id
+		//kısmında kayıtlı değil ise
+	//	o id json dosyada var mı diye bakılır
+		//var ise oradan bilgileri alıp üniversiteyi oluşturulur.
+		//yoksa üniversite bulunamadı hatası döndürülür.
 		
-		 DefaultHttpClient httpClient = null;
-	     try {
-	         httpClient = new DefaultHttpClient();
-	         HttpResponse response = getResponse("https://gitlab.com/kodiasoft/intern/2019/snippets/1859421/raw", httpClient);
-	         String outPut = readData(response);
-	        // System.out.println(outPut);
-	         Gson gson = new Gson();
-	         List<UniversityModel> fromJson = gson.fromJson(outPut, new TypeToken<List<UniversityModel>>(){}.getType());
-	        // System.out.println("DATA SIZE : "+fromJson.size());
-	      //   System.out.println("GET FIRST DATA : "+fromJson.get(0));
-	         
-	         for(UniversityModel uniler : fromJson){
-	     		System.out.println(uniler.getFounded_at());
-	     		
-	     	}
-	         
-	         
-	     } catch (Exception e) {
-	         e.printStackTrace();
-	     } finally {
-	         httpClient.getConnectionManager().shutdown();
-	     }
+		University university=universityDal.universitegetir(student.getUniversity_id());
+		//veri tabanında yok ise
+		if(university==null)
+		{
+			//
+			
+			
+			 DefaultHttpClient httpClient = null;
+		     try {
+		         httpClient = new DefaultHttpClient();
+		         HttpResponse response = getResponse("https://gitlab.com/kodiasoft/intern/2019/snippets/1859421/raw", httpClient);
+		         String outPut = readData(response);
+		        // System.out.println(outPut);
+		         Gson gson = new Gson();
+		         List<UniversityModel> fromJson = gson.fromJson(outPut, new TypeToken<List<UniversityModel>>(){}.getType());
+		       
+		         
+		         for(UniversityModel universitymodel : fromJson){
+		        	 //json dosyasında üniversite var ise 
+		        	 //veri tabanına üniversiteyi ekle
+		     		if(universitymodel.getId()==student.getUniversity_id()) 
+		     		{
+		     			
+		     			
+		     			SimpleDateFormat bicim2=new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+		     			Date tarihSaat= bicim2.parse("2006-02-15 04:34:33");
+		     			
+		     			 University newuni=new University(universitymodel.getId(),universitymodel.getName(),universitymodel.getCity(),universitymodel.getWeb_page(),universitymodel.getType(),tarihSaat,tarihSaat,tarihSaat);
+		     			
+		     			universityDal.add(newuni);
+		     			this.studentDal.add(student);
+		     			break;
+		     		}
+		     		else {
+		     			//üniverite bulunamadı döndürür.
+		     		}
+		     		
+		     	}
+		         
+		         
+		     } catch (Exception e) {
+		         e.printStackTrace();
+		     } finally {
+		         httpClient.getConnectionManager().shutdown();
+		     }
+			
+			
+			
+			
+		}
 		
 		
 		
-		this.studentDal.add(student);
+		
+		
+		
 	}
 
 	

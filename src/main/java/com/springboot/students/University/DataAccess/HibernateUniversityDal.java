@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.hibernate.Session;
 
-
+import com.springboot.students.University.Entities.Student;
 import com.springboot.students.University.Entities.University;
 @Repository
 public class HibernateUniversityDal implements IUniversityDal  {
@@ -36,12 +36,48 @@ public class HibernateUniversityDal implements IUniversityDal  {
 
 	
 	@Override
+	@Transactional
 	public University detay(int id) {
 
 		Session session=entityManager.unwrap(Session.class);
 		University university=session.get(University.class, id);
 		return university;
 	}
+
+
+
+	
+
+	
+	
+
+
+	@Override
+	@Transactional
+	public University universitegetir(int id) {
+		
+		
+		Session session=entityManager.unwrap(Session.class);
+		
+		University university=session.get(University.class, id);
+	//EF//University university=db.university.firstordefault(i=>i.api_id==id);
+	
+		return university;
+	}
+
+
+
+	@Override
+	@Transactional
+	public void add(University university) {
+		// TODO Auto-generated method stub
+		Session session=entityManager.unwrap(Session.class);
+		session.saveOrUpdate(university);
+		
+	}
+
+	
+	
 
 	
 }

@@ -47,6 +47,20 @@ public class University {
 		this.updated_at = updated_at;
 	}
 	
+	public University(int api_id, String name, String city, String web_page, String type, Date founded_at,
+			Date created_at, Date updated_at) {
+		super();
+		
+		this.api_id = api_id;
+		this.name = name;
+		this.city = city;
+		this.web_page = web_page;
+		this.type = type;
+		this.founded_at = founded_at;
+		this.created_at = created_at;
+		this.updated_at = updated_at;
+	}
+	
 	public University() {
 		
 	}
