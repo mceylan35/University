@@ -32,6 +32,7 @@ public class HibernateStudentDal implements IStudentDal{
 	}
 
 	@Override
+	@Transactional
 	public void add(Student student) {
 		// TODO Auto-generated method stub
 		Session session=entityManager.unwrap(Session.class);
@@ -43,6 +44,7 @@ public class HibernateStudentDal implements IStudentDal{
 	
 
 	@Override
+	@Transactional
 	public Student detay(int id) {
 		// TODO Auto-generated method stub
 		Session session=entityManager.unwrap(Session.class);

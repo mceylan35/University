@@ -8,4 +8,6 @@ public interface IUniversityDal {
 	List<University> getAll();
 	
 	University detay (int id);
+    University universitegetir(int id);
+    void add(University university);
 }
