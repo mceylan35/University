@@ -3,7 +3,7 @@ package com.springboot.students.University.Business;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -53,6 +53,8 @@ public class StudentManager implements IStudentService {
 		//var ise oradan bilgileri alıp üniversiteyi oluşturulur.
 		//yoksa üniversite bulunamadı hatası döndürülür.
 		
+		
+		
 		University university=universityDal.universitegetir(student.getUniversity_id());
 		//veri tabanında yok ise
 		if(university==null)
@@ -77,10 +79,19 @@ public class StudentManager implements IStudentService {
 		     		{
 		     			
 		     			
-		     			SimpleDateFormat bicim2=new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-		     			Date tarihSaat= bicim2.parse("2006-02-15 04:34:33");
+		     			  SimpleDateFormat tarihformat = new SimpleDateFormat("yyyy-MM-dd");
+		     		    
+		     			String tarih=universitymodel.getFounded_at()+"-01-01";
+		     			Date kayittarih=tarihformat.parse(tarih);
+		     			String ogrencitarih=student.getCreated_at()+"";
+		     			 Date tarihler = new Date();
+		     			student.setCreated_at(tarihler);
+		     			student.setUpdated_at(tarihler);
+		     			//student.setStarted_at(tarihler);
 		     			
-		     			 University newuni=new University(universitymodel.getId(),universitymodel.getName(),universitymodel.getCity(),universitymodel.getWeb_page(),universitymodel.getType(),tarihSaat,tarihSaat,tarihSaat);
+		     			
+		     			
+		     			 University newuni=new University(universitymodel.getId(),universitymodel.getName(),universitymodel.getCity(),universitymodel.getWeb_page(),universitymodel.getType(),kayittarih,kayittarih,kayittarih);
 		     			
 		     			universityDal.add(newuni);
 		     			this.studentDal.add(student);

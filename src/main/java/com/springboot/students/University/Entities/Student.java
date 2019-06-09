@@ -1,6 +1,8 @@
 package com.springboot.students.University.Entities;
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 @Entity
 @Table(name="students")
@@ -15,10 +17,13 @@ public class Student {
 	@Column(name="name")
 	private String name;
 	@Column(name="started_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date started_at;
 	@Column(name="created_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date created_at;
 	@Column(name="updated_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updated_at;
 	
 	

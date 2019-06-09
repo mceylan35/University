@@ -1,5 +1,6 @@
 package com.springboot.students.University.Entities;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="universities")
@@ -28,25 +31,14 @@ public class University {
 	@Column(name="type")
 	private String type;
 	@Column(name="founded_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date founded_at;
 	@Column(name="created_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date created_at;
 	@Column(name="updated_at")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updated_at;
-	public University(int id, int api_id, String name, String city, String web_page, String type, Date founded_at,
-			Date created_at, Date updated_at) {
-		super();
-		this.id = id;
-		this.api_id = api_id;
-		this.name = name;
-		this.city = city;
-		this.web_page = web_page;
-		this.type = type;
-		this.founded_at = founded_at;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
-	}
-	
 	public University(int api_id, String name, String city, String web_page, String type, Date founded_at,
 			Date created_at, Date updated_at) {
 		super();

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.hibernate.Session;
 
-import com.springboot.students.University.Entities.Student;
+
 import com.springboot.students.University.Entities.University;
 @Repository
 public class HibernateUniversityDal implements IUniversityDal  {
