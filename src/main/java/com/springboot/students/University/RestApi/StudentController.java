@@ -5,6 +5,7 @@ package com.springboot.students.University.RestApi;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +28,9 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	@GetMapping("/students")
-	public List<Student> get()
+	public ResponseEntity<List<Student>> get()
 	{
-		return studentService.getAll();
+		return ResponseEntity.ok(studentService.getAll());
 	}
 	@PostMapping("/add")
 	public void add(@RequestBody Student student) {
@@ -43,4 +44,36 @@ public class StudentController {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
