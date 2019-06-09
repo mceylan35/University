@@ -45,7 +45,7 @@ public class StudentManager implements IStudentService {
 
 	@Override
 	@Transactional
-	public void add(Student student) {
+	public int add(Student student) {
 		//öğrenci ekleme isteği gelir.
 		//gelen  university değeri sizin universities tablonuzdak api_id
 		//kısmında kayıtlı değil ise
@@ -95,9 +95,10 @@ public class StudentManager implements IStudentService {
 		     			
 		     			universityDal.add(newuni);
 		     			this.studentDal.add(student);
-		     			break;
+		     			return 1;
 		     		}
 		     		else {
+		     			return 2;
 		     			//üniverite bulunamadı döndürür.
 		     		}
 		     		
@@ -116,7 +117,7 @@ public class StudentManager implements IStudentService {
 		}
 		
 		
-		
+		return 1;
 		
 		
 		
