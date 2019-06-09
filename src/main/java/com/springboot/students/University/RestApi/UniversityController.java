@@ -3,6 +3,7 @@ package com.springboot.students.University.RestApi;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +22,16 @@ public class UniversityController {
 		
 		this.universityService = universityService;
 	}
-	
+	//üniversiteleri listeler
 	@GetMapping("/universities")
-	public List<University> get()
+	public ResponseEntity<List<University>> get()
 	{
-		return universityService.getAll();
+		return ResponseEntity.ok(universityService.getAll());
 	}
-
+	//üniversite detay
 	@GetMapping("/universities/{id}")
-	public University detay(@PathVariable int id) {
-		return universityService.detay(id);
+	public ResponseEntity<University> detay(@PathVariable int id) {
+		return ResponseEntity.ok(universityService.detay(id));
 	}
 	
 	

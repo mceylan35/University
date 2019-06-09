@@ -98,7 +98,7 @@ public class StudentManager implements IStudentService {
 		     			return true;
 		     		}
 		     		else {
-		     			return false;
+		     			//return false;
 		     			//üniverite bulunamadı döndürür.
 		     		}
 		     		
@@ -112,11 +112,11 @@ public class StudentManager implements IStudentService {
 		     }
 			
 			
-		     return false;
+		     return true;
 			
 		}
 		
-		
+		this.studentDal.add(student);
 		return true;
 		
 		
@@ -124,7 +124,7 @@ public class StudentManager implements IStudentService {
 	}
 
 	
-
+	//öğrenci detay
 	@Override
 	@Transactional
 	public Student detay(int id) {
@@ -144,7 +144,7 @@ public class StudentManager implements IStudentService {
              throw e;
          }
      }
-
+	 //gelen json datayı stringe çevirir.
      public static String readData(HttpResponse response) throws Exception {
          BufferedReader reader = null;
          try {

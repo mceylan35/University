@@ -19,7 +19,7 @@ public class UniversityManager implements IUniversityService {
 
 		this.universityDal = universityDal;
 	}
-
+	
 	@Override
 	@Transactional
 	public List<University> getAll() {
